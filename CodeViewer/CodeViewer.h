@@ -2,6 +2,7 @@
 #define CODEEDITOR_H
 
 #include <QPlainTextEdit>
+#include <QString>
 
 class CodeViewer : public QPlainTextEdit
 {

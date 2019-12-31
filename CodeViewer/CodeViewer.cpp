@@ -5,14 +5,14 @@
 
 CodeViewer::CodeViewer(QWidget *parent) : QPlainTextEdit(parent)
 {
-      lineNumberArea = new LineNumberArea(this);
+    lineNumberArea = new LineNumberArea(this);
+    setReadOnly(true);
+    connect(this, &CodeViewer::blockCountChanged, this, &CodeViewer::updateLineNumberAreaWidth);
+    connect(this, &CodeViewer::updateRequest, this, &CodeViewer::updateLineNumberArea);
+    connect(this, &CodeViewer::cursorPositionChanged, this, &CodeViewer::highlightCurrentLine);
 
-      connect(this, &CodeViewer::blockCountChanged, this, &CodeViewer::updateLineNumberAreaWidth);
-      connect(this, &CodeViewer::updateRequest, this, &CodeViewer::updateLineNumberArea);
-      connect(this, &CodeViewer::cursorPositionChanged, this, &CodeViewer::highlightCurrentLine);
-
-      updateLineNumberAreaWidth();
-      highlightCurrentLine();
+    updateLineNumberAreaWidth();
+    highlightCurrentLine();
 }
 
 int CodeViewer::lineNumberAreaWidth()
