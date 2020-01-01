@@ -86,3 +86,17 @@ QStringList TextCompare::longestCommonSubsequence(const QStringList& source, con
 
     return longestCommonSubsequence;
 }
+
+QMap<int, QString> TextCompare::QStringListDifference(QStringList lcs, const QStringList& target)
+{
+    QMap<int, QString> differenceMap;
+
+    for (int i = 0; i < target.count(); i++)
+    {
+        if (lcs.contains(target[i]))
+            lcs.removeOne(target[i]);
+        else differenceMap.insert(i, target[i]);
+    }
+
+    return differenceMap;
+}

@@ -7,11 +7,11 @@
 #include "TextCompare/textcompare.h"
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
-{    
+{
     ui->setupUi(this);
     QGridLayout* gridLayout = new QGridLayout(this);
     // Что-бы накинуть свлой QLayout на MainWindows обязательно надо использовать прослойку из центрального виджета
-    // https://forum.qt.io/topic/53814/qlayout-attempting-to-add-qlayout-to-mainwindow-which-already-has-a-layout-solved/4
+    // forum.qt.io/topic/53814/qlayout-attempting-to-add-qlayout-to-mainwindow-which-already-has-a-layout-solved/4
     auto central = new QWidget(this);
     setCentralWidget(central);
 
@@ -19,7 +19,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     secondView = new CodeViewer(this);
     diffView = new CodeViewer(this);
     pushButton = new QPushButton(this);
-    pushButton->setText("Compare");
+    pushButton->setText("Сравнить");
     connect(pushButton, &QPushButton::pressed, this, &MainWindow::Compare);
 
     gridLayout->addWidget(firstView, 0, 0);
@@ -34,26 +34,28 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
 void MainWindow::Compare()
 {
-    QMessageBox msgBox;
-    /*
-    auto diff = TextCompare::longestCommonSubsequence(firstView->toPlainText(), secondView->toPlainText());
-    msgBox.setText(diff);
-    msgBox.exec();
-    */
-    auto diff = TextCompare::longestCommonSubsequence(firstView->toPlainText().split("\n"), secondView->toPlainText().split("\n"));
-    for (auto commonString : diff)
+    diffView->clear();
+    QStringList firstVeiwLines = firstView->toPlainText().split("\n");
+    QStringList secondViewLines = secondView->toPlainText().split("\n");
+    QStringList lcs = TextCompare::longestCommonSubsequence(firstVeiwLines, secondViewLines);
+    diffView->appendPlainText("Common text:");
+    for (const auto& commonString : lcs)
         diffView->appendPlainText(commonString);
-    /*{
-        msgBox.setText(commonString);
-        msgBox.exec();
-    }*/
 
+    diffView->appendPlainText("First diff:");
+    QMap<int, QString> diffMap = TextCompare::QStringListDifference(lcs, firstVeiwLines);
+    for (const auto& lineKey : diffMap.keys())
+        diffView->appendPlainText(QString::number(lineKey + 1) + " " + diffMap[lineKey]);
+
+
+
+    diffView->appendPlainText("Second diff:");
+    diffMap = TextCompare::QStringListDifference(lcs, secondViewLines);
+    for (const auto& lineKey : diffMap.keys())
+        diffView->appendPlainText(QString::number(lineKey + 1) + " " + diffMap[lineKey]);       
 }
 
 MainWindow::~MainWindow()
-{
-    delete firstView;
-    delete secondView;
-    delete ui;
+{    
+    delete ui; // Все дочерние виджеты будут удалены автоматически
 }
-
