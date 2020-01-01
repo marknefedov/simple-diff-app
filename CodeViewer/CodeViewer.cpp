@@ -6,13 +6,13 @@
 CodeViewer::CodeViewer(QWidget *parent) : QPlainTextEdit(parent)
 {
     lineNumberArea = new LineNumberArea(this);
-    setReadOnly(true);
+    //setReadOnly(true);
     connect(this, &CodeViewer::blockCountChanged, this, &CodeViewer::updateLineNumberAreaWidth);
     connect(this, &CodeViewer::updateRequest, this, &CodeViewer::updateLineNumberArea);
-    connect(this, &CodeViewer::cursorPositionChanged, this, &CodeViewer::highlightCurrentLine);
+    //connect(this, &CodeViewer::cursorPositionChanged, this, &CodeViewer::highlightCurrentLine);
 
     updateLineNumberAreaWidth();
-    highlightCurrentLine();
+    //highlightCurrentLine();
 }
 
 int CodeViewer::lineNumberAreaWidth()
@@ -54,7 +54,7 @@ void CodeViewer::resizeEvent(QResizeEvent *e)
     lineNumberArea->setGeometry(QRect(cr.left(), cr.top(), lineNumberAreaWidth(), cr.height()));
 }
 
-
+/*
 void CodeViewer::highlightCurrentLine()
 {
     QList<QTextEdit::ExtraSelection> extraSelections;
@@ -73,6 +73,7 @@ void CodeViewer::highlightCurrentLine()
 
     setExtraSelections(extraSelections);
 }
+*/
 
 void CodeViewer::lineNumberAreaPaintEvent(QPaintEvent *event)
 {
@@ -93,7 +94,6 @@ void CodeViewer::lineNumberAreaPaintEvent(QPaintEvent *event)
             painter.setPen(Qt::black);
             painter.drawText(0, top, lineNumberArea->width(), fontMetrics().height(), Qt::AlignRight, number);
         }
-
         block = block.next();
         top = bottom;
         bottom = top + qRound(blockBoundingRect(block).height());

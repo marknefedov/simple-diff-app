@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include <QPushButton>
 #include <QMainWindow>
 #include "CodeViewer/CodeViewer.h"
 
@@ -20,5 +21,10 @@ private:
     Ui::MainWindow *ui;
     CodeViewer* firstView;
     CodeViewer* secondView;
+    CodeViewer* diffView;
+    QPushButton* pushButton;
+
+    void Compare();
 };
+
 #endif // MAINWINDOW_H
