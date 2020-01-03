@@ -20,13 +20,6 @@ public:
 
 private:
     Ui::MainWindow *ui;
-    /*
-    QGridLayout* gridLayout;
-    CodeViewer* firstView;
-    CodeViewer* secondView;
-    CodeViewer* diffView;
-    QPushButton* pushButton;
-    */
     void Compare();
 };
 

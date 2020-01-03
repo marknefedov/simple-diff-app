@@ -16,16 +16,51 @@ void TextCompare::resizeQStringList(QStringList& list, int newSize)
     else if (diff < 0) list.erase(list.end() + diff, list.end());
 }
 
-QMap<int, QString> TextCompare::QStringListDifference(QStringList lcs, const QStringList& target)
+QString TextCompare::RightTrimm(const QString& str)
+{
+     int n = str.size() - 1;
+     for (; n >= 0; --n) {
+       if (!str.at(n).isSpace()) {
+         return str.left(n + 1);
+       }
+     }
+     return "";
+   }
+
+QMap<int, QString> TextCompare::QStringListDifference(QStringList source, const QStringList& target)
 {
     QMap<int, QString> differenceMap;
 
     for (int i = 0; i < target.count(); i++)
     {
-        if (lcs.contains(target[i]))
-            lcs.removeOne(target[i]);
+        if (source.contains(target[i]))
+            source.removeOne(target[i]);
         else differenceMap.insert(i, target[i]);
     }
 
     return differenceMap;
+}
+
+QPair<QList<int>, QList<int>> TextCompare::FindDifferentLines(const QStringList& firstText, const QStringList& secondText)
+{
+    QPair<QList<int>, QList<int>> diffs;
+    QStringList commonText = longestCommonSubsequence<QStringList>(firstText, secondText);
+    QStringList copyCommonText = commonText;
+
+    for (int i = 0; i < firstText.count(); i++)
+    {
+        if (commonText.contains(firstText[i]))
+            commonText.removeOne(firstText[i]);
+        else diffs.first.append(i);
+    }
+
+
+    for (int i = 0; i < secondText.count(); i++)
+    {
+        if (copyCommonText.contains(secondText[i]))
+            copyCommonText.removeOne(secondText[i]);
+        else diffs.second.append(i);
+    }
+
+    return diffs;
 }

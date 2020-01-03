@@ -54,6 +54,21 @@ void CodeViewer::resizeEvent(QResizeEvent *e)
     lineNumberArea->setGeometry(QRect(cr.left(), cr.top(), lineNumberAreaWidth(), cr.height()));
 }
 
+void CodeViewer::ResetCharFormat()
+{
+    QTextCursor cursor = textCursor();
+    cursor.select(QTextCursor::SelectionType::Document);
+    QTextCharFormat defaultFotmat;
+    cursor.setCharFormat(defaultFotmat);
+}
+
+void CodeViewer::HighlightLine(const int line, const QTextCharFormat& format)
+{
+    QTextCursor cursor(document()->findBlockByLineNumber(line));
+    cursor.select(QTextCursor::SelectionType::BlockUnderCursor);
+    cursor.setCharFormat(format);
+}
+
 /*
 void CodeViewer::highlightCurrentLine()
 {

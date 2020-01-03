@@ -13,6 +13,8 @@ public:
 
     void lineNumberAreaPaintEvent(QPaintEvent *event);
     int lineNumberAreaWidth();
+    void ResetCharFormat();
+    void HighlightLine(const int line, const QTextCharFormat& color);
 
 protected:
     void resizeEvent(QResizeEvent *event) override;

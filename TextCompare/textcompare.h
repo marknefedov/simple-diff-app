@@ -4,11 +4,15 @@
 #include <QStringList>
 #include <QMap>
 #include <QString>
+#include <QList>
 
 namespace TextCompare
 {    
     void resizeQStringList(QStringList& list, int newSize);
+    QString RightTrimm(const QString& str);
+
     QMap<int, QString> QStringListDifference(QStringList source, const QStringList& target);
+    QPair<QList<int>, QList<int>> FindDifferentLines(const QStringList& lcs, const QStringList& secondText);
 
     template<typename T>
     T longestCommonSubsequence(const T& source, const T& target)
