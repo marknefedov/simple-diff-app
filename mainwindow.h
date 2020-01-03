@@ -3,6 +3,7 @@
 
 #include <QPushButton>
 #include <QMainWindow>
+#include <QGridLayout>
 #include "CodeViewer/CodeViewer.h"
 
 QT_BEGIN_NAMESPACE
@@ -19,11 +20,13 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    /*
+    QGridLayout* gridLayout;
     CodeViewer* firstView;
     CodeViewer* secondView;
     CodeViewer* diffView;
     QPushButton* pushButton;
-
+    */
     void Compare();
 };
 
