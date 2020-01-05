@@ -16,18 +16,26 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    DatabaseSettings/DatabaseConnection.cpp \
+    DatabaseSettings/DatabaseSettingsDialog.cpp \
+    Stats/Stats.cpp \
     TextCompare/textcompare.cpp \
     main.cpp \
     mainwindow.cpp \
     CodeViewer/CodeViewer.cpp
 
 HEADERS += \
+    DatabaseSettings/DatabaseConnection.h \
+    DatabaseSettings/DatabaseSettingsDialog.h \
+    Stats/Stats.h \
     TextCompare/textcompare.h \
     mainwindow.h \
     CodeViewer/CodeViewer.h \
     CodeViewer/LineNumberArea.h
 
 FORMS += \
+    DatabaseSettings/DatabaseSettingsDialog.ui \
+    Stats/Stats.ui \
     mainwindow.ui
 
 # Default rules for deployment.

@@ -26,9 +26,6 @@ private slots:
 
 private:
     QWidget *lineNumberArea;
-    QList<QTextEdit::ExtraSelection> selectionsAdded;
-    QList<QTextEdit::ExtraSelection> selectionsRemoved;
-    QList<QTextEdit::ExtraSelection> selectionsChanged;
 };
 
 #endif // CODEEDITOR_H

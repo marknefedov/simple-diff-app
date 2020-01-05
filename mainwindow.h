@@ -5,6 +5,8 @@
 #include <QMainWindow>
 #include <QGridLayout>
 #include "CodeViewer/CodeViewer.h"
+#include "DatabaseSettings/DatabaseSettingsDialog.h"
+#include "Stats/Stats.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -20,7 +22,12 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    DatabaseSettingsDialog* dialog;
+    Stats* statsWindow;
+
     void Compare();
+    void OpenDBSettingsWindow();
+    void OpenStatsWindow();
 };
 
 #endif // MAINWINDOW_H
