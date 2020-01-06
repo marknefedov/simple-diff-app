@@ -148,6 +148,13 @@
      </property>
     </widget>
    </item>
+   <item>
+    <widget class="QPushButton" name="createTableButton">
+     <property name="text">
+      <string>Создать таблицу</string>
+     </property>
+    </widget>
+   </item>
   </layout>
  </widget>
  <resources/>

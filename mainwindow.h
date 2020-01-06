@@ -24,10 +24,17 @@ private:
     Ui::MainWindow *ui;
     DatabaseSettingsDialog* dialog;
     Stats* statsWindow;
+    QPair<QList<int>, QList<int>> diffs;
 
     void Compare();
     void OpenDBSettingsWindow();
     void OpenStatsWindow();
+    bool SaveComparison();    
+    void OpenFile1();
+    void OpenFile2();
+    static QString readFile(const QString& filePath);
 };
+
+
 
 #endif // MAINWINDOW_H

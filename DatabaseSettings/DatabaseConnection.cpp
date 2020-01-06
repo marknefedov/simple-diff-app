@@ -1,4 +1,5 @@
 #include "DatabaseConnection.h"
+#include <QSqlQuery>
 
 DatabaseConnection DbConnection;
 

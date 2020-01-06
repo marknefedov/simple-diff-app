@@ -21,7 +21,7 @@ protected:
 
 private:
     Ui::Stats *ui;
-    QSqlQueryModel* model;
+    QSqlTableModel* model;
 };
 
 #endif // STATS_H

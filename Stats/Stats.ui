@@ -17,15 +17,12 @@
    <item row="0" column="0">
     <widget class="QTableView" name="tableView"/>
    </item>
-   <item row="2" column="0">
+   <item row="1" column="0">
     <widget class="QPushButton" name="refreshButton">
      <property name="text">
-      <string>PushButton</string>
+      <string>Обновить статистику</string>
      </property>
     </widget>
-   </item>
-   <item row="1" column="0">
-    <widget class="QLineEdit" name="sqlQuerryEdit"/>
    </item>
   </layout>
  </widget>

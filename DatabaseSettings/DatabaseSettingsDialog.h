@@ -18,6 +18,7 @@ private:
     Ui::DatabaseSettingsDialog *ui;
 
     void SaveSettings();
+    void CreateSqlTable();
 };
 
 #endif // DATABASESETTINGSDIALOG_H

@@ -14,7 +14,7 @@ struct DatabaseConnection
     QSqlDatabase Database;
 
     bool Connect(const QString& Hostname, const QString& Port, const QString& Name, const QString& User, const QString& Password);
-    bool Connect();
+    bool Connect();    
 };
 
 extern DatabaseConnection DbConnection;
