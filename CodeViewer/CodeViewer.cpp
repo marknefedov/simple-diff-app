@@ -6,7 +6,6 @@
 CodeViewer::CodeViewer(QWidget *parent) : QPlainTextEdit(parent)
 {
     lineNumberArea = new LineNumberArea(this);
-    //setReadOnly(true);
     connect(this, &CodeViewer::blockCountChanged, this, &CodeViewer::updateLineNumberAreaWidth);
     connect(this, &CodeViewer::updateRequest, this, &CodeViewer::updateLineNumberArea);    
     setLineWrapMode(LineWrapMode::NoWrap);
@@ -66,27 +65,6 @@ void CodeViewer::HighlightLine(const int line, const QTextCharFormat& format)
     cursor.select(QTextCursor::SelectionType::BlockUnderCursor);
     cursor.setCharFormat(format);
 }
-
-/*
-void CodeViewer::highlightCurrentLine()
-{
-    QList<QTextEdit::ExtraSelection> extraSelections;
-
-    if (!isReadOnly()) {
-        QTextEdit::ExtraSelection selection;
-
-        QColor lineColor = QColor(Qt::yellow).lighter(160);
-
-        selection.format.setBackground(lineColor);
-        selection.format.setProperty(QTextFormat::FullWidthSelection, true);
-        selection.cursor = textCursor();
-        selection.cursor.clearSelection();
-        extraSelections.append(selection);
-    }
-
-    setExtraSelections(extraSelections);
-}
-*/
 
 void CodeViewer::lineNumberAreaPaintEvent(QPaintEvent *event)
 {

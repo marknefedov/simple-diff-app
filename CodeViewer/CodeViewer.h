@@ -20,8 +20,7 @@ protected:
     void resizeEvent(QResizeEvent *event) override;
 
 private slots:
-    void updateLineNumberAreaWidth();
-    //void highlightCurrentLine();
+    void updateLineNumberAreaWidth();    
     void updateLineNumberArea(const QRect &rect, int dy);
 
 private:

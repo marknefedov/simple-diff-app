@@ -17,6 +17,7 @@ struct DatabaseConnection
     bool Connect();    
 };
 
+// Используется для глобального доступа к базе данных.
 extern DatabaseConnection DbConnection;
 
 #endif // DATABASESETTINGS_H
